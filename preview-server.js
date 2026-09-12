@@ -18,6 +18,7 @@ const site = {
     logo: null,
     navigation: [
         { label: "Home", url: "/", slug: "home" },
+        { label: "Projects", url: "/projects/", slug: "projects" },
         { label: "About", url: "/about/", slug: "about" },
         { label: "Tags", url: "/tag/minimalism/", slug: "tags" }
     ],
@@ -181,6 +182,102 @@ const aboutPage = {
     `
 };
 
+const mockFeaturedProjects = [
+    {
+        title: "mark",
+        url: "/project-mark/",
+        date: "2026",
+        datetime: "2026-01-01",
+        pitch: "High-throughput static site generator written in pure Go with embedded full-text search.",
+        tags: [{ name: "Go" }, { name: "SQLite" }],
+        canonical_url: "https://github.com/example/mark"
+    },
+    {
+        title: "tinydb",
+        url: "/project-tinydb/",
+        date: "2025",
+        datetime: "2025-06-01",
+        pitch: "Zero-dependency embedded key-value store optimized for flash storage and edge runtimes.",
+        tags: [{ name: "Rust" }],
+        canonical_url: "https://github.com/example/tinydb"
+    },
+    {
+        title: "notes-app",
+        url: "/project-notes-app/",
+        date: "2026",
+        datetime: "2026-03-01",
+        pitch: "Local-first encrypted markdown notes with CRDT peer-to-peer synchronization.",
+        tags: [{ name: "TypeScript" }],
+        canonical_url: "https://demo.example.com"
+    }
+];
+
+const mockDirectoryProjects = [
+    {
+        title: "bjorn",
+        url: "/project-bjorn/",
+        date: "2026",
+        pitch: "Minimalist Bear Blog theme built for Ghost CMS.",
+        tags: [{ name: "Handlebars" }, { name: "CSS" }],
+        canonical_url: "https://github.com/klppl/bjorn"
+    },
+    {
+        title: "dotfiles",
+        url: "/project-dotfiles/",
+        date: "2025",
+        pitch: "Reproducible macOS and zsh development environment.",
+        tags: [{ name: "Shell" }],
+        canonical_url: "https://github.com/example/dotfiles"
+    },
+    {
+        title: "minisearch",
+        url: "/project-minisearch/",
+        date: "2024",
+        pitch: "Sub-millisecond in-memory inverted index and BM25 ranker.",
+        tags: [{ name: "Go" }],
+        canonical_url: "https://github.com/example/minisearch"
+    },
+    {
+        title: "logfmt",
+        url: "/project-logfmt/",
+        date: "2024",
+        pitch: "Fast streaming structured log parser for terminal diagnostics.",
+        tags: [{ name: "Rust" }],
+        canonical_url: "https://github.com/example/logfmt"
+    }
+];
+
+function resolveGlobalTags(html, context) {
+    let primaryNavHtml = '';
+    site.navigation.forEach(n => {
+        const isCurrent = context.currentPath === n.url;
+        primaryNavHtml += `<a href="${n.url}" class="${isCurrent ? 'nav-current' : ''}">${n.label}</a> `;
+    });
+
+    let secondaryNavHtml = '';
+    site.secondary_navigation.forEach(n => {
+        secondaryNavHtml += `<a href="${n.url}" target="_blank" rel="noopener">${n.label}</a> `;
+    });
+
+    return html
+        .replace(/\{\{!--[\s\S]*?--\}\}/g, '')
+        .replace(/\{\{@site\.locale\}\}/g, site.locale)
+        .replace(/\{\{meta_title\}\}/g, context.title ? `${context.title} — ${site.title}` : site.title)
+        .replace(/\{\{asset "built\/index\.css"\}\}/g, '/assets/built/index.css')
+        .replace(/\{\{ghost_head\}\}/g, '<meta name="generator" content="Ghost 5.0 (Björn Theme Local Preview)" />')
+        .replace(/\{\{ghost_foot\}\}/g, '')
+        .replace(/\{\{body_class\}\}/g, context.bodyClass || 'home-template')
+        .replace(/\{\{@site\.url\}\}/g, site.url)
+        .replace(/\{\{#if @site\.logo\}\}[\s\S]*?\{\{else\}\}([\s\S]*?)\{\{\/if\}\}/g, `<h2>${site.title}</h2>`)
+        .replace(/\{\{navigation\}\}/g, primaryNavHtml)
+        .replace(/\{\{#if @site\.secondary_navigation\}\}([\s\S]*?)\{\{\/if\}\}/g, `$1`)
+        .replace(/\{\{navigation type="secondary"\}\}/g, secondaryNavHtml)
+        .replace(/\{\{statusCode\}\}/g, context.statusCode || '404')
+        .replace(/\{\{message\}\}/g, context.message || 'Page not found')
+        .replace(/\{\{#if errorDetails\}\}[\s\S]*?\{\{\/if\}\}/g, '')
+        .replace(/https:\/\/github\.com\/janraasch\/hugo-bearblog/g, 'https://github.com/klppl/bjorn');
+}
+
 // Simple Handlebars Template Engine for Theme Preview
 function renderTemplate(templateName, context) {
     let templateFile = path.join(THEME_DIR, `${templateName}.hbs`);
@@ -197,6 +294,7 @@ function renderTemplate(templateName, context) {
     // Check layout inheritance
     const usesDefault = content.includes('{{!< default}}');
     content = content.replace(/\{\{!<\s*default\}\}/g, '');
+    content = content.replace(/\{\{!--[\s\S]*?--\}\}/g, '');
 
     // Render Index / Post Loop
     if (templateName === 'index' || templateName === 'tag' || templateName === 'author') {
@@ -307,44 +405,72 @@ function renderTemplate(templateName, context) {
         content = content.replace(/\{\{#if feature_image\}\}[\s\S]*?<\/figure>\s*\{\{\/if\}\}/g, '');
     }
 
+    // Render Projects Showcase
+    if (templateName === 'custom-projects' || templateName === 'page-projects') {
+        content = content.replace(/\{\{#post\}\}([\s\S]*?)\{\{\/post\}\}/g, '$1');
+        content = content.replace(/\{\{title\}\}/g, 'Projects');
+        content = content.replace(/\{\{custom_excerpt\}\}/g, 'A directory of flagship creations, open-source tools, and ongoing experiments.');
+        content = content.replace(/\{\{#if custom_excerpt\}\}([\s\S]*?)\{\{\/if\}\}/g, '$1');
+        content = content.replace(/\{\{#if content\}\}[\s\S]*?\{\{\/if\}\}/g, '');
+        content = content.replace(/\{\{post_class\}\}/g, 'page page-projects');
+
+        // Featured Section
+        let featuredHtml = '';
+        mockFeaturedProjects.forEach(fp => {
+            let tagsSpan = fp.tags.map(t => `<span class="project-tag">[${t.name}]</span>`).join(' ');
+            featuredHtml += `
+            <div class="project-featured-item">
+                <div class="project-featured-header">
+                    <div>
+                        <a class="project-featured-title" href="${fp.url}">${fp.title}</a>
+                        ${tagsSpan}
+                    </div>
+                    <time datetime="${fp.datetime}">${fp.date}</time>
+                </div>
+                <p class="project-pitch">${fp.pitch}</p>
+                <div class="project-links">
+                    <a href="${fp.canonical_url}" target="_blank" rel="noopener">&rarr; Live / Repository</a>
+                    <a href="${fp.url}">&rarr; Case Study / Notes</a>
+                </div>
+            </div>`;
+        });
+        content = content.replace(/\{\{#get "posts" filter="tag:\[project,hash-project\]\+featured:true"[\s\S]*?\{\{\/get\}\}/g, `
+        <h2 class="projects-section-title">Featured Projects</h2>
+        <div class="projects-featured">${featuredHtml}</div>`);
+
+        // Directory Section
+        let dirHtml = '';
+        mockDirectoryProjects.forEach(dp => {
+            let tagsSpan = dp.tags.map(t => `[${t.name}] `).join('');
+            dirHtml += `
+            <li>
+                <span class="project-dir-year">${dp.date}</span>
+                <a class="project-dir-title" href="${dp.url}">${dp.title}</a>
+                <span class="project-dir-leader"></span>
+                <span class="project-dir-desc">${dp.pitch}</span>
+                <span class="project-dir-tags">${tagsSpan}</span>
+                <span class="project-dir-links">
+                    <a href="${dp.canonical_url}" target="_blank" rel="noopener">(External)</a>
+                </span>
+            </li>`;
+        });
+        content = content.replace(/\{\{#get "posts" filter="tag:\[project,hash-project\]\+featured:false"[\s\S]*?\{\{\/get\}\}/g, `
+        <h2 class="projects-section-title">Directory</h2>
+        <ul class="projects-dir">${dirHtml}</ul>`);
+    }
+
     // Clean up unresolved conditionals
     content = content.replace(/\{\{#if @site\.description\}\}([\s\S]*?)\{\{\/if\}\}/g, site.description ? `<p>${site.description}</p>` : '');
     content = content.replace(/\{\{@site\.url\}\}/g, site.url);
 
     // If using default.hbs layout
+    let finalHtml = content;
     if (usesDefault) {
         let defaultLayout = fs.readFileSync(path.join(THEME_DIR, 'default.hbs'), 'utf8');
-
-        // Nav
-        let primaryNavHtml = '';
-        site.navigation.forEach(n => {
-            const isCurrent = context.currentPath === n.url;
-            primaryNavHtml += `<a href="${n.url}" class="${isCurrent ? 'nav-current' : ''}">${n.label}</a> `;
-        });
-
-        let secondaryNavHtml = '';
-        site.secondary_navigation.forEach(n => {
-            secondaryNavHtml += `<a href="${n.url}" target="_blank" rel="noopener">${n.label}</a> `;
-        });
-
-        defaultLayout = defaultLayout.replace(/\{\{@site\.locale\}\}/g, site.locale);
-        defaultLayout = defaultLayout.replace(/\{\{meta_title\}\}/g, context.title ? `${context.title} — ${site.title}` : site.title);
-        defaultLayout = defaultLayout.replace(/\{\{asset "built\/index\.css"\}\}/g, '/assets/built/index.css');
-        defaultLayout = defaultLayout.replace(/\{\{ghost_head\}\}/g, '<meta name="generator" content="Ghost 5.0 (Björn Theme Local Preview)" />');
-        defaultLayout = defaultLayout.replace(/\{\{ghost_foot\}\}/g, '');
-        defaultLayout = defaultLayout.replace(/\{\{body_class\}\}/g, context.bodyClass || 'home-template');
-        defaultLayout = defaultLayout.replace(/\{\{@site\.url\}\}/g, site.url);
-        defaultLayout = defaultLayout.replace(/\{\{#if @site\.logo\}\}[\s\S]*?\{\{else\}\}([\s\S]*?)\{\{\/if\}\}/g, `<h2>${site.title}</h2>`);
-        defaultLayout = defaultLayout.replace(/\{\{navigation\}\}/g, primaryNavHtml);
-        defaultLayout = defaultLayout.replace(/\{\{#if @site\.secondary_navigation\}\}([\s\S]*?)\{\{\/if\}\}/g, `$1`);
-        defaultLayout = defaultLayout.replace(/\{\{navigation type="secondary"\}\}/g, secondaryNavHtml);
-
-        defaultLayout = defaultLayout.replace(/https:\/\/github\.com\/janraasch\/hugo-bearblog/g, 'https://github.com/klppl/bjorn');
-        // Insert body
-        return defaultLayout.replace(/\{\{\{body\}\}\}/g, content);
+        finalHtml = defaultLayout.replace(/\{\{\{body\}\}\}/g, content);
     }
 
-    return content;
+    return resolveGlobalTags(finalHtml, context);
 }
 
 // HTTP Server
@@ -375,6 +501,17 @@ const server = http.createServer((req, res) => {
     // About Static Page
     if (urlPath === '/about/' || urlPath === '/about') {
         const html = renderTemplate('page', { page: aboutPage, currentPath: '/about/', title: 'About', bodyClass: 'page-template page-about' });
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        return res.end(html);
+    }
+
+    // Projects Showcase Page
+    if (urlPath === '/projects/' || urlPath === '/projects') {
+        const html = renderTemplate('page-projects', {
+            currentPath: '/projects/',
+            title: 'Projects',
+            bodyClass: 'page-template page-projects'
+        });
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         return res.end(html);
     }

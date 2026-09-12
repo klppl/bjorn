@@ -14,6 +14,7 @@
 | **Theme Engine** | System `prefers-color-scheme: dark` (`#01242e`) |
 | **Layout** | `720px` max-width container, 130px fixed date column |
 | **Target** | Ghost `^5.0.0` (Full Koenig card + comment support) |
+| **Projects** | Tiered showcase template (`custom-projects.hbs`) |
 
 ## Quickstart
 

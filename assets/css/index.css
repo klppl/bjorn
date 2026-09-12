@@ -481,3 +481,134 @@ footer nav a {
   font-size: 3em;
   margin-bottom: 0.2em;
 }
+
+/* Projects Showcase */
+.projects-section-title {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  margin: 2.5em 0 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px dashed rgba(127, 127, 127, 0.4);
+}
+
+/* Featured Projects */
+.project-featured-item {
+  margin-bottom: 1.8em;
+  padding-bottom: 1.4em;
+  border-bottom: 1px dashed rgba(127, 127, 127, 0.2);
+}
+
+.project-featured-item:last-child {
+  border-bottom: none;
+}
+
+.project-featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0.3em;
+}
+
+.project-featured-title {
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.project-tag {
+  font-family: monospace;
+  font-size: 0.85em;
+  opacity: 0.85;
+  margin-left: 6px;
+}
+
+.project-pitch {
+  margin: 0.4em 0 0.5em;
+  line-height: 1.5;
+}
+
+.project-links {
+  font-size: 0.88em;
+  margin-top: 0.3em;
+}
+
+.project-links a {
+  margin-right: 14px;
+}
+
+/* Project Directory */
+ul.projects-dir {
+  list-style: none;
+  padding: 0;
+  margin: 1em 0;
+}
+
+ul.projects-dir li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 0.5em;
+  line-height: 1.5;
+}
+
+ul.projects-dir .project-dir-year {
+  font-family: monospace;
+  font-size: 0.9em;
+  flex: 0 0 45px;
+  opacity: 0.7;
+}
+
+ul.projects-dir .project-dir-title {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+ul.projects-dir .project-dir-leader {
+  flex: 1;
+  border-bottom: 1px dashed rgba(127, 127, 127, 0.35);
+  margin: 0 4px;
+  height: 0;
+  align-self: center;
+}
+
+ul.projects-dir .project-dir-desc {
+  font-size: 0.9em;
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+ul.projects-dir .project-dir-tags {
+  font-family: monospace;
+  font-size: 0.8em;
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+ul.projects-dir .project-dir-links {
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  ul.projects-dir li {
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin-bottom: 1em;
+  }
+  ul.projects-dir .project-dir-leader {
+    display: none;
+  }
+  ul.projects-dir .project-dir-desc {
+    flex: 1 0 100%;
+    max-width: 100%;
+    white-space: normal;
+    font-size: 0.85em;
+  }
+}
+

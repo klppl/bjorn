@@ -1,0 +1,84 @@
+{{!< default}}
+
+{{#post}}
+<article class="{{post_class}}">
+
+    <header class="post-header">
+        <h1>{{title}}</h1>
+        {{#if custom_excerpt}}
+            <p>{{custom_excerpt}}</p>
+        {{/if}}
+    </header>
+
+    {{#if content}}
+    <div class="gh-content" style="margin-bottom: 2em;">
+        {{content}}
+    </div>
+    {{/if}}
+
+</article>
+{{/post}}
+
+{{!-- Section 1: Featured Flagships --}}
+{{#get "posts" filter="tag:[project,hash-project]+featured:true" include="tags" limit="all" order="published_at desc"}}
+    {{#if posts}}
+    <h2 class="projects-section-title">Featured Projects</h2>
+    <div class="projects-featured">
+        {{#foreach posts}}
+        <div class="project-featured-item">
+            <div class="project-featured-header">
+                <div>
+                    <a class="project-featured-title" href="{{url}}">{{title}}</a>
+                    {{#if tags}}
+                        {{#foreach tags}}
+                            <span class="project-tag">[{{name}}]</span>
+                        {{/foreach}}
+                    {{/if}}
+                </div>
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY"}}</time>
+            </div>
+            {{#if custom_excerpt}}
+                <p class="project-pitch">{{custom_excerpt}}</p>
+            {{/if}}
+            <div class="project-links">
+                {{#if canonical_url}}
+                    <a href="{{canonical_url}}" target="_blank" rel="noopener">&rarr; Live / Repository</a>
+                {{/if}}
+                <a href="{{url}}">&rarr; Case Study / Notes</a>
+            </div>
+        </div>
+        {{/foreach}}
+    </div>
+    {{/if}}
+{{/get}}
+
+{{!-- Section 2: Directory of All Projects --}}
+{{#get "posts" filter="tag:[project,hash-project]+featured:false" include="tags" limit="all" order="published_at desc"}}
+    {{#if posts}}
+    <h2 class="projects-section-title">Directory</h2>
+    <ul class="projects-dir">
+        {{#foreach posts}}
+        <li>
+            <span class="project-dir-year">{{date format="YYYY"}}</span>
+            <a class="project-dir-title" href="{{url}}">{{title}}</a>
+            <span class="project-dir-leader"></span>
+            {{#if custom_excerpt}}
+                <span class="project-dir-desc">{{custom_excerpt}}</span>
+            {{/if}}
+            {{#if tags}}
+                <span class="project-dir-tags">
+                    {{#foreach tags}}[{{name}}] {{/foreach}}
+                </span>
+            {{/if}}
+            <span class="project-dir-links">
+                {{#if canonical_url}}
+                    <a href="{{canonical_url}}" target="_blank" rel="noopener">(External)</a>
+                {{else}}
+                    <a href="{{url}}">(Details)</a>
+                {{/if}}
+            </span>
+        </li>
+        {{/foreach}}
+    </ul>
+    {{/if}}
+{{/get}}
