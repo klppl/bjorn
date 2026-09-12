@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{meta_title}}</title>
+    <link rel="stylesheet" href="{{asset "built/index.css"}}" />
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    <header>
+        <a href="{{@site.url}}" class="title">
+            {{#if @site.logo}}
+                <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}" />
+            {{else}}
+                <h2>{{@site.title}}</h2>
+            {{/if}}
+        </a>
+        <nav>
+            {{navigation}}
+        </nav>
+    </header>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer>
+        <p>Made with <a href="https://github.com/klppl/bjorn" target="_blank" rel="noopener">ʕ•ᴥ•ʔ Björn</a></p>
+    </footer>
+
+    {{ghost_foot}}
+
+</body>
+</html>

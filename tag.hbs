@@ -1,0 +1,23 @@
+{{!< default}}
+
+{{#tag}}
+<header class="tag-header">
+    <h3 style="margin-bottom: 0;">Filtering for #{{name}}</h3>
+    <small>
+        <a href="{{@site.url}}">Remove filter</a>
+    </small>
+    {{#if description}}
+        <p>{{description}}</p>
+    {{/if}}
+</header>
+{{/tag}}
+
+<ul class="blog-posts">
+    {{#foreach posts}}
+        {{> "card"}}
+    {{else}}
+        <li>No posts found in this tag</li>
+    {{/foreach}}
+</ul>
+
+{{pagination}}

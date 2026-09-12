@@ -1,0 +1,85 @@
+{
+  "name": "bjorn",
+  "description": "A minimal, text-first Bear Blog theme for Ghost CMS",
+  "version": "1.0.0",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "dev": "rollup -c --environment BUILD:development -w",
+    "build": "rollup -c --environment BUILD:production",
+    "preview": "node preview-server.js",
+    "zip": "bestzip bjorn.zip assets/* partials/* *.hbs package.json",
+    "test": "gscan ."
+  },
+  "author": {
+    "name": "Björn Contributors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klppl/bjorn.git"
+  },
+  "bugs": "https://github.com/klppl/bjorn/issues",
+  "homepage": "https://github.com/klppl/bjorn",
+  "gpm": {
+    "type": "theme",
+    "categories": [
+      "Minimal",
+      "Text",
+      "Blog"
+    ]
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme",
+    "bear-blog",
+    "minimal",
+    "lightweight"
+  ],
+  "devDependencies": {
+    "@babel/core": "8.0.1",
+    "@babel/preset-env": "8.0.2",
+    "@rollup/plugin-babel": "7.1.0",
+    "@rollup/plugin-commonjs": "29.0.3",
+    "@rollup/plugin-node-resolve": "16.0.3",
+    "@rollup/plugin-terser": "1.0.0",
+    "bestzip": "4.0.0",
+    "gscan": "6.6.0",
+    "postcss": "8.5.28",
+    "postcss-import": "17.0.0",
+    "postcss-preset-env": "11.5.2",
+    "rollup": "4.63.1",
+    "rollup-plugin-livereload": "2.0.5",
+    "rollup-plugin-postcss": "4.0.2"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "config": {
+    "card_assets": true,
+    "posts_per_page": 15,
+    "image_sizes": {
+      "xxs": {
+        "width": 30
+      },
+      "xs": {
+        "width": 100
+      },
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1200
+      },
+      "xl": {
+        "width": 2000
+      }
+    }
+  },
+  "type": "module"
+}

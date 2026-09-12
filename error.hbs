@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{statusCode}} - {{@site.title}}</title>
+    <link rel="stylesheet" href="{{asset "built/index.css"}}" />
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    <header>
+        <a href="{{@site.url}}" class="title">
+            {{#if @site.logo}}
+                <img class="site-logo" src="{{@site.logo}}" alt="{{@site.title}}" />
+            {{else}}
+                <h2>{{@site.title}}</h2>
+            {{/if}}
+        </a>
+    </header>
+
+    <main>
+        <div class="error-content">
+            <h1>{{statusCode}}</h1>
+            <p>{{message}}</p>
+            <p><a href="{{@site.url}}">&larr; Back to homepage</a></p>
+        </div>
+
+        {{#if errorDetails}}
+        <section style="margin-top: 2em; text-align: left;">
+            <h4>Error Details:</h4>
+            <ul>
+                {{#foreach errorDetails}}
+                <li>
+                    <strong>{{{rule}}}</strong>
+                    {{#foreach failures}}
+                        <p><small>{{ref}} - {{message}}</small></p>
+                    {{/foreach}}
+                </li>
+                {{/foreach}}
+            </ul>
+        </section>
+        {{/if}}
+    </main>
+
+    <footer>
+        <p>Made with <a href="https://github.com/klppl/bjorn" target="_blank" rel="noopener">ʕ•ᴥ•ʔ Björn</a></p>
+    </footer>
+
+    {{ghost_foot}}
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+{{!< default}}
+
+{{#if @site.description}}
+    <p>{{@site.description}}</p>
+{{/if}}
+
+<ul class="blog-posts">
+    {{#foreach posts}}
+        {{> "card"}}
+    {{else}}
+        <li>No posts yet</li>
+    {{/foreach}}
+</ul>
+
+{{pagination}}
+
+{{#get "tags" limit="all" order="count.posts desc"}}
+    {{#if tags}}
+        <div class="tags-list">
+            {{#foreach tags}}
+                <a href="{{url}}">#{{name}}</a>
+            {{/foreach}}
+        </div>
+    {{/if}}
+{{/get}}

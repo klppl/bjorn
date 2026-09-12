@@ -1,0 +1,26 @@
+{{!< default}}
+
+{{#author}}
+<header class="author-header">
+    <h3 style="margin-bottom: 0;">Posts by {{name}}</h3>
+    <small>
+        <a href="{{@site.url}}">Back to all posts</a>
+    </small>
+    {{#if bio}}
+        <p>{{bio}}</p>
+    {{/if}}
+    {{#if website}}
+        <p><small><a href="{{website}}" target="_blank" rel="noopener">{{website}}</a></small></p>
+    {{/if}}
+</header>
+{{/author}}
+
+<ul class="blog-posts">
+    {{#foreach posts}}
+        {{> "card"}}
+    {{else}}
+        <li>No posts by this author yet</li>
+    {{/foreach}}
+</ul>
+
+{{pagination}}
