@@ -1,5 +1,7 @@
 # Björn ʕ•ᴥ•ʔ
 
+[![License: Lagom](https://img.shields.io/badge/license-lagom-9E2B25)](https://klppl.github.io/lagom-license/)
+
 > A bare-metal, text-first [Bear Blog](https://bearblog.dev) theme for Ghost CMS. No bloat, no trackers, no client-side framework rituals.
 
 ![Björn Screenshot](screenshot.png)
