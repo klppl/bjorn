@@ -1,7 +1,10 @@
 THE LAGOM LICENSE
-                    Version 2, May 2026
 
     "Not too much, not too little — just the right amount of freedom."
+
+This license has no version number. Numbering it would imply it
+could be improved, which would be immodest, or that it needed
+improving, which would be rude.
 
 TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 OF THIS SOFTWARE, OR WHATEVER THIS IS, HONESTLY
@@ -24,11 +27,27 @@ to. Code, configs, a scraper for something niche — we don't judge.
 
 "You" refers to the person reading this. Yes, you.
 
-"Lagom" (Swedish, adj.) — not too much, not too little. The
-Goldilocks zone, but with better furniture and meatballs.
-
 "The Author" refers to whoever was producing this code instead
 of going outside. Bless them.
+
+"Lagom" (Swedish, adj., adv.; pronounced LAH-gom, not LAY-gum,
+please) — not too much, not too little; sufficient; adequate;
+appropriate; just right. Possibly derived from "laget om", "around
+the team", from a legend in which Vikings passed a horn of mead
+around the circle and each took exactly enough that everyone got
+some. Etymologists consider this legend unlikely. Swedes consider
+it beside the point. Lagom is the amount of milk in your coffee
+that does not need to be discussed. It is the volume of a
+conversation on a commuter train, which is none. It is a salary
+that is fine, a summer house that is red, a political opinion
+held quietly, an applause that ends at the same time for
+everyone. It is the second cinnamon bun, but never the third.
+It is the Goldilocks zone, but with better furniture and
+meatballs. It cannot be measured, only felt, and it is felt
+most strongly when someone else is not being it. To ask "how
+much is lagom?" is itself slightly un-lagom. The Author
+acknowledges that this definition is now far too long, and
+therefore in breach of itself, and has decided to live with that.
 
 GRANT OF RIGHTS
 
@@ -59,6 +78,8 @@ following:
 5. LICENSE INCLUSION: Include this license or a clear reference
    to it in copies of the software. It's just polite.
 
+THINGS THAT ARE NOT REQUIRED BUT WOULD BE NICE
+
 6. You are NOT required to:
    a) Share your modifications
       (but hoarding is not lagom)
@@ -70,10 +91,58 @@ following:
    b) Take a walk sometimes
    c) Drink water
    d) Push to main on Fridays only if it feels lagom
+   e) Not power a galactic empire with it. A modest regional
+      empire, at most.
+   f) Not modify it so much that the Author feels inadequate.
+      Some is fine. The Author is sensitive.
 
-For the avoidance of doubt: only clauses 3 and 5 are actual
-requirements. Everything else that sounds like advice is
-advice. The Author cannot legally compel you to drink water.
+ALLEMANSRÄTTEN (THE RIGHT TO ROAM)
+
+You may roam freely through the codebase, as through any Swedish
+forest. You may pick berries (snippets) and mushrooms (helper
+functions), though the Author makes no warranty that the
+mushrooms are not poisonous. Leave no trace. Do not camp in one
+file for more than one night. Close the gate behind you.
+
+ASSEMBLY INSTRUCTIONS
+
+The Software ships flat-packed. Some assembly required. The
+instructions are wordless and feature a small cartoon person who
+seems calmer than you. On completion you will have one leftover
+screw. Do not ask where it goes. It goes nowhere. It has always
+gone nowhere.
+
+JANTELAGEN
+
+You shall not think you are better than this Software.
+The Software does not think it is better than you.
+Nobody here thinks they are anything special. That is the point.
+
+RELEASES AND SUPPORT
+
+Breaking changes are permitted on Saturdays, in moderation, like
+lördagsgodis (Saturday candy). A small bag. Not the big bag.
+
+Issues are handled in order of their queue ticket number.
+Cutting the queue is the only truly unforgivable act under this
+license, and the Author will not say anything about it, but will
+think about it, at length, for years.
+
+No support is available in July. All of July. Issues filed in
+July will be read in August, by an Author with a tan and no
+memory of having written this code.
+
+HAZARDOUS MATERIALS
+
+Certain legacy files are like surströmming. Open them outdoors,
+downwind, with a friend, and never on a plane.
+
+FOR THE AVOIDANCE OF DOUBT
+
+Only clauses 3 and 5 are actual requirements. Everything else
+in this license that sounds like advice is advice, including
+anything about moose, queues, July, candy, or the laundry room.
+The Author cannot legally compel you to drink water.
 The Author can only hope.
 
 LIMITATIONS OF LIABILITY
@@ -93,9 +162,10 @@ OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
 OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-IF THIS CODE DELETES YOUR DATABASE, BURNS YOUR TOAST, OR CAUSES
-AN INTERNATIONAL INCIDENT, THAT IS BETWEEN YOU AND YOUR BACKUP
-STRATEGY. YOU HAVE A BACKUP STRATEGY.
+IF THIS CODE DELETES YOUR DATABASE, BURNS YOUR TOAST, CAUSES
+AN INTERNATIONAL INCIDENT, OR COLLIDES WITH A MOOSE, THAT IS
+BETWEEN YOU AND YOUR BACKUP STRATEGY. YOU HAVE A BACKUP
+STRATEGY. THE AUTHOR HAS NO CONTROL OVER MOOSE. NOBODY DOES.
 
 THE LAGOM CLAUSE
 
@@ -111,9 +181,15 @@ DISPUTE RESOLUTION
 
 Any disputes arising from this license shall be governed by
 the laws of Sweden. Ideally, the involved parties sit down over
-coffee and a cinnamon bun and reach a lagom resolution. If that
-fails, Stockholm District Court has jurisdiction.
+coffee and a cinnamon bun and reach a lagom resolution.
 
+If that fails, the aggrieved party is encouraged to escalate in
+the traditional manner: a passive-aggressive note taped to the
+laundry room door ("To whoever keeps leaving lint in the filter.
+Some of us have to live here too. /A neighbour"). No names. No
+eye contact. Ever.
+
+If that also fails, Stockholm District Court has jurisdiction.
 Litigation is never lagom, but it is available.
 
 SEVERABILITY
